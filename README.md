@@ -43,7 +43,7 @@ This is a modern, responsive website for IIMT University featuring an elegant de
 ## File Structure
 ```
 IIMT/
-├── h.html          (Main HTML file)
+├── index.html          (Main HTML file)
 ├── logo/           (Images directory)
 │   ├── IIMTU L.png
 │   ├── iimt1.jpg
