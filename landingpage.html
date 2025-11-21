@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IIMT University - Shaping Tomorrow's Leaders</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            overflow-x: hidden;
+            line-height: 1.6;
+            color: #333;
+            background: #000;
+        }
+
+        /* Colors */
+        :root {
+            --primary-red: #8b0000;
+            --gold: #ffd700;
+            --dark-red: #660000;
+            --light-gold: #fff3a0;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --dark-gray: #2c3e50;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+            opacity: 0.9;
+        }
+
+        .bg-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Geometric Shapes */
+        .geometric-shape {
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .shape-1 {
+            width: 200px;
+            height: 200px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            top: 20%;
+            left: 10%;
+            animation: rotate 20s linear infinite;
+            opacity: 0.1;
+        }
+
+        .shape-2 {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(45deg, var(--primary-red), transparent);
+            top: 60%;
+            right: 15%;
+            animation: float 8s ease-in-out infinite;
+            opacity: 0.1;
+        }
+
+        .shape-3 {
+            width: 100px;
+            height: 100px;
+            border: 2px solid var(--gold);
+            transform: rotate(45deg);
+            bottom: 20%;
+            left: 80%;
+            animation: pulse 4s ease-in-out infinite;
+            opacity: 0.1;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: rotate(45deg) scale(1);
+            }
+
+            50% {
+                transform: rotate(45deg) scale(1.2);
+            }
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(139, 0, 0, 0.95);
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--gold), var(--light-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+        }
+
+        /* Nav Links */
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links.active {
+            display: flex !important;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            width: 100%;
+            background: rgba(139, 0, 0, 0.95);
+            flex-direction: column;
+            padding: 20px;
+            gap: 20px;
+            animation: slideDown 0.3s ease forwards;
+        }
+
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links li a::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links li a:hover::before {
+            width: 100%;
+        }
+
+        .nav-links li a:hover {
+            color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 100px 20px;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            z-index: 10;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--primary-red), var(--dark-red));
+            color: var(--gold);
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+            }
+
+            to {
+                box-shadow: 0 0 50px rgba(255, 215, 0, 0.6);
+            }
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, white, var(--gold), white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textShimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes textShimmer {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            margin-bottom: 50px;
+            opacity: 0.9;
+        }
+
+        .hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            /* content ke peeche but shapes ke niche */
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .hero-particles .particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: var(--gold);
+            border-radius: 50%;
+            opacity: 0.8;
+            box-shadow: 0 0 6px var(--gold), 0 0 12px var(--light-gold);
+            animation: heroFloat 12s infinite linear;
+        }
+
+        @keyframes heroFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10%,
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+
+        /* CTA */
+        .cta-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--gold), var(--light-gold));
+            color: var(--primary-red);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid var(--gold);
+            position: relative;
+        }
+
+        .btn-secondary:active {
+            background: var(--primary-red);
+            color: white;
+            border-color: var(--primary-red);
+        }
+
+        .btn-secondary:visited {
+            background: var(--primary-red);
+            color: white;
+            border-color: var(--primary-red);
+        }
+
+
+
+        /* Features Section */
+        .features {
+            padding: 150px 20px;
+            background: url("logo/iimt2.jpg") no-repeat center center;
+            background-size: cover;
+            position: relative;
+            z-index: 10;
+            color: #f1f508;
+            /* text visible on image */
+        }
+
+        .features::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            /* dark overlay */
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            /* thoda spacing badhaya */
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        .feature-card {
+            position: relative;
+            text-align: center;
+            padding: 40px 30px;
+            border-radius: 20px;
+            background: #ffffff;
+            /* white background rakha */
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(45deg, var(--primary-red), var(--gold));
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Titles and descriptions */
+        .feature-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--primary-red);
+            margin-bottom: 15px;
+        }
+
+        .feature-description {
+            font-size: 16px;
+            color: #444;
+            line-height: 1.7;
+        }
+
+        🔧 .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(45deg, var(--primary-red), var(--gold));
+        }
+
+        .features .bg-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* important */
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .features .particle {
+            background: var(--gold);
+            border-radius: 50%;
+            opacity: 0.8;
+            box-shadow: 0 0 6px var(--gold), 0 0 10px var(--light-gold);
+        }
+
+
+        /* Optional: randomize starting positions */
+        .features .particle:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-delay: 0s;
+        }
+
+        .features .particle:nth-child(2) {
+            top: 50%;
+            left: 40%;
+            animation-delay: 3s;
+        }
+
+        .features .particle:nth-child(3) {
+            top: 80%;
+            left: 70%;
+            animation-delay: 5s;
+        }
+
+
+        .feature-card {
+            position: relative;
+            z-index: 1;
+            /* so cards float above particles */
+        }
+
+
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--dark-red) 100%);
+            color: white;
+            padding: 120px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-grid {
+            display: flex;
+            /* Horizontal layout */
+            justify-content: center;
+            gap: 80px;
+            /* spacing between cards */
+            text-align: center;
+            flex-wrap: wrap;
+            /* responsive */
+        }
+
+        .stat-card {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 64px;
+            /* Bigger numbers */
+            font-weight: 800;
+            color: var(--gold);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 18px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.9;
+        }
+
+        /* Section Header */
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary-red);
+            /* Red heading */
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            font-size: 20px;
+            color: #ffffff;
+            /* White subtitle */
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Footer */
+        .footer {
+            background: #000;
+            color: white;
+            padding: 80px 20px 30px;
+            position: relative;
+            width: 100%;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 15px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .cta-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .features,
+            .footer {
+                width: 100%;
+                margin: 0;
+                padding-left: 15px;
+                padding-right: 15px;
+                box-sizing: border-box;
+            }
+        }
+            </style>
+</head>
+
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="bg-particles"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="logo/IIMTU L.png" alt="IIMT University Logo" style="height:60px;">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="https://iimtu.edu.in/page/about-university">About Us</a></li>
+                <li><a href="#programs">Programs</a></li>
+                <li><a href="https://iimt.icloudems.com/corecampus/index.php">ERP</a></li>
+                <li><a href="https://iimtu.edu.in/blog/">Blogs</a></li>
+                <li><a href="https://iimtu.edu.in/contact">Contact</a></li>
+            </ul>
+
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <!-- Golden particles just behind text -->
+        <div class="hero-particles"></div>
+
+        <!-- Geometric Shapes -->
+        <div class="geometric-shape shape-1"></div>
+        <div class="geometric-shape shape-2"></div>
+        <div class="geometric-shape shape-3"></div>
+
+        <div class="hero-content">
+            <div class="hero-badge">#1 University in Uttar Pradesh</div>
+            <h1 class="hero-title">IIMT</h1>
+            <h1 class="hero-title">Future Starts Here</h1>
+            <p class="hero-subtitle">
+                Where innovation meets excellence. NAAC A accredited institution
+                transforming dreams into achievements through world-class education.
+            </p>
+            <div class="cta-container">
+                <a href="https://iimtu.edu.in//" class="btn btn-secondary" target="_blank"
+                    rel="noopener noreferrer">VISIT
+                    IIMT UNIVERSITY</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Features Section -->
+    <section class="features" id="programs">
+
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Excellence Redefined</h2>
+                <p class="section-subtitle">Cutting-edge programs designed for tomorrow's leaders and innovators</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+
+                    <h3 class="feature-title">Engineering Excellence</h3>
+                    <p class="feature-description">
+                        Revolutionary engineering programs with AI labs, robotics centers, and industry 4.0 integration
+                        for next-gen engineers.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+
+                    <h3 class="feature-title">Business Innovation</h3>
+                    <p class="feature-description">
+                        Transform into a business leader with our MBA programs featuring startup incubators and global
+                        partnerships.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    < <h3 class="feature-title">Pharmaceutical Sciences</h3>
+                        <p class="feature-description">
+                            Advanced pharmaceutical research with state-of-the-art labs and industry collaborations for
+                            drug
+                            discovery.
+                        </p>
+                </div>
+
+                <div class="feature-card">
+
+                    <h3 class="feature-title">Legal Mastery</h3>
+                    <p class="feature-description">
+                        Master the art of law with our comprehensive programs, moot courts, and practical legal
+                        training.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+
+                    <h3 class="feature-title">Research Excellence</h3>
+                    <p class="feature-description">
+                        Pioneer groundbreaking research with our PhD programs and world-class research facilities.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+
+                    <h3 class="feature-title">Global Exposure</h3>
+                    <p class="feature-description">
+                        International collaborations, exchange programs, and global internships for worldwide
+                        perspective.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">30K+</span>
+                    <span class="stat-label">Students Empowered</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">800+</span>
+                    <span class="stat-label">Expert Faculty</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">Placement Success</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">120+</span>
+                    <span class="stat-label">Programs Offered</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h2>IIMT University</h2>
+                    <p>'O' Pocket, Ganga Nagar Colony<br>
+                        Mawana Road, Meerut (U.P.) 250001</p>
+                    <br>
+                    <p><strong>Phone:</strong> +91 9897474588<br>
+                        <strong>Email:</strong> admissions@iimt.edu.in<br>
+                        <strong>Website:</strong> www.iimt.edu.in
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h2>Academic Excellence</h2>
+                    <p><a href="https://iimtu.edu.in/stream-details/engineering">Engineering</a><br>
+                        <a href="https://iimtu.edu.in/stream-details/management">Management</a><br>
+                        <a href="https://iimtu.edu.in/stream-details/pharmacy">Pharmacy</a><br>
+                        <a href="https://iimtu.edu.in/stream-details/law">Law</a><br>
+                        <a href="https://iimtu.edu.in/stream-details/laboratory-technology">Research Programs</a>
+                    </p>
+                </div>
+
+
+                <div class="footer-section">
+                    <h2>Recognition</h2>
+                    <p>🏆 NAAC A+ Accredited<br>
+                        🏆 UGC Approved<br>
+                        🏆 State Ranked #1<br>
+                        🏆 Industry Partnerships<br>
+                        🏆 Global Recognition</p>
+                </div>
+            </div>
+
+            <!-- Footer Bottom Line fixed at the bottom -->
+            <div class="footer-bottom" style="text-align:center; margin-top:30px;">
+                <p>&copy; 2025 IIMT University. Crafting Excellence Since Inception. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Create animated particles
+        function createParticles() {
+            const container = document.querySelector('.bg-particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        // Create golden particles only in hero section
+        function createHeroParticles() {
+            const container = document.querySelector('.hero-particles');
+            for (let i = 0; i < 40; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.width = particle.style.height = (Math.random() * 4 + 2) + 'px';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+
+
+        // Navbar scroll effect
+        function handleNavbarScroll() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }
+
+        // Smooth scroll for navigation (only internal links)
+        function setupSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId.startsWith('#') && targetId.length > 1) {
+                        e.preventDefault();
+                        const target = document.querySelector(targetId);
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
+        }
+
+
+        // Animate stats on scroll
+        function animateStats() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const statNumbers = entry.target.querySelectorAll('.stat-number');
+                        statNumbers.forEach(stat => {
+                            const finalValue = stat.textContent;
+                            const numValue = parseInt(finalValue.replace(/\D/g, ''));
+                            let currentValue = 0;
+                            const increment = numValue / 100;
+                            const timer = setInterval(() => {
+                                currentValue += increment;
+                                if (currentValue >= numValue) {
+                                    currentValue = numValue;
+                                    clearInterval(timer);
+                                }
+                                stat.textContent = Math.floor(currentValue) + finalValue.replace(/\d/g, '');
+                            }, 30);
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            const statsSection = document.querySelector('.stats');
+            if (statsSection) observer.observe(statsSection);
+        }
+
+        // Parallax effect for geometric shapes
+        function handleParallax() {
+            const shapes = document.querySelectorAll('.geometric-shape');
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+
+            shapes.forEach((shape, index) => {
+                const speed = (index + 1) * 0.3;
+                shape.style.transform = `translateY(${rate * speed}px)`;
+            });
+        }
+
+        // Mobile menu toggle
+        function setupMobileMenu() {
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const navLinks = document.querySelector('.nav-links');
+
+            mobileMenu.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
+            });
+        }
+
+
+        // Initialize all functions
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            createHeroParticles();
+            setupSmoothScroll();
+            animateStats();
+            setupMobileMenu();
+        });
+
+        // Event listeners
+        window.addEventListener('scroll', () => {
+            handleNavbarScroll();
+            handleParallax();
+        });
+
+        // Add entrance animation to feature cards
+        const observeCards = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(50px)';
+                    entry.target.style.transition = 'all 0.6s ease';
+
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+
+                    observeCards.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.feature-card').forEach(card => {
+            observeCards.observe(card);
+        });
+    </script>
+</body>
+
+</html>
